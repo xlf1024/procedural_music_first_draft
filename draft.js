@@ -238,3 +238,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
 			playloop();
 		});
 });
+
+console.log = document.writeln;
+console.error = document.writeln;
