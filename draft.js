@@ -205,7 +205,7 @@ function getMeasure(index){
 	if(measures[index]) return measures[index].map(name => segments[name]);
 	else return [];
 }
-let start_time = 0;
+let start_time = Number.MAX_SAFE_INTEGER;
 function playMeasure(index, time){
 	console.log("playing measure %s at time %s", index, time);
 	getMeasure(index).forEach(buffer=>playAudio(buffer, time));
@@ -215,24 +215,45 @@ let plan_ahead = 1;
 let startindex = 0;
 function playloop(){
 	let ct = ctx.currentTime;
-	let stopindex = Math.ceil((ct + plan_ahead - start_time)/measure_length);
+	let stopindex = Math.floor((ct + plan_ahead - start_time)/measure_length);
 	console.log({ct, startindex, stopindex});
 	for(let index = startindex; index <= stopindex; index++){
 		playMeasure(index, start_time + index * measure_length);
+		displayMeasure(index, start_time + index * measure_length);
 	}
+	let marker = document.getElementById("marker");
+	marker.style.gridColumnStart = Math.floor(ct / measure_length);
 	startindex = stopindex + 1;
 	setTimeout(playloop, interval*1000);
 }
 
-
+function displayMeasure(index, time){
+	if(measures[index]){
+		var colspan = 4;
+		var colstart = Math.round(time/measure_length);
+		let vis = document.getElementById("vis");
+		measures[index].forEach(name => {
+			let span = document.createElement("span");
+			span.innerText = name;
+			span.style = "grid-column: " + colstart + " / span " + colspan;
+			vis.appendChild(span);
+		});
+	}
+}
 document.addEventListener("DOMContentLoaded", ()=>{
+	const interval_input = document.getElementById("interval");
+	interval_input.addEventListener("change", ()=>{interval = Number(interval_input.value);});
+	interval_input.dispatchEvent(new Event("change"));
+	const plan_ahead_input = document.getElementById("plan_ahead");
+	plan_ahead_input.addEventListener("change", ()=>{plan_ahead = Number(plan_ahead_input.value);});
+	plan_ahead_input.dispatchEvent(new Event("change"));
 	loadAllAudio()
 		.then(()=>{
 			let playbutton = document.getElementById("play");
 			playbutton.removeAttribute("disabled");
 			playbutton.addEventListener("click", ()=>{
 				startindex = 0;
-				start_time = ctx.currentTime;
+				start_time = (Math.floor(ctx.currentTime / measure_length) + 1)*measure_length;
 				ctx.resume();
 			});
 			playloop();

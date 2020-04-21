@@ -9,5 +9,30 @@
 	<body>
 		<progress value="0" max="1"></progress>
 		<button id="play" disabled>play</button>
+		<label for="interval">scheduling interval (s):</label>
+		<input id="interval" type="number" min="0.05" step="0.05" value="0.5"/>
+		<label for="plan_ahead">plan ahead (s):</label>
+		<input id="plan_ahead" type="number" min="0.05" step="0.05" value="1"/>
+		<div id="vis"><span id="marker"></span></div>
+		<style>
+			#vis{
+				display:grid;
+				grid-auto-columns: minmax(1.5em, 1fr);
+				grid-auto-flow: dense;
+				max-width: 100%;
+				overflow: auto;
+			}
+			#vis>span{
+				order: 1;
+				background-color: #99f;
+				border: 1px solid #44f;
+			}
+			#vis>#marker{
+				order: 2;
+				grid-column-span: 1;
+				background-color: #f99;
+				border: 1px solid #f44;
+			}
+		</style>
 	</body>
 </html>
