@@ -193,7 +193,7 @@ function loadAllAudio(){
 				return audio;
 			}).catch(console.error)
 	});
-	return Promise.allSettled(promises);
+	return (Promise.allSettled||Promise.all)(promises);
 }
 function playAudio(buffer, time){
 	let source = ctx.createBufferSource();
