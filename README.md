@@ -3,7 +3,7 @@
 Preparing some experiments with procedural music assembly.
 Basic idea is to have recorded melody segments which are assembled based on rules.
 
-This draft is based on a piece I wrote some years ago, which basically worked that way, except the assembly of the segments was done manually in the sheet music. See [2_Partitur_3c.mscz](/2_Partitur_3c.mscz) (MuseScore) or [2_Partitur_3c.pdf](/2_Partitur_3c.pdf) for sheet music. Also, for reference, there is MuseScore's generated version of the original piece available in [2_Partitur_3c.flac](/2_Partitur_3c.flac]).
+This draft is based on a piece I wrote some years ago, which basically worked that way, except the assembly of the segments was done manually in the sheet music. See [2_Partitur_3c.mscz](/2_Partitur_3c.mscz) (MuseScore) or [2_Partitur_3c.pdf](/2_Partitur_3c.pdf) for sheet music. Also, for reference, there is MuseScore's generated version of the original piece available in [2_Partitur_3c.flac](/2_Partitur_3c.flac).
 
 For getting started with procedural assembly, I split that piece into its segments - see [Partitur_3_segments.mscz](/Partitur_3_segments.mscz) (MuseScore) or [Partitur_3_segments.pdf](/Partitur_3_segments.pdf) - and rendered each segment (voice) to flac in MuseScore. A final project would have actual recordings instead. Audio file length is 5 measures as the longest segments are 4 segments, but I need to leave some time to include reverb etc. Of course e.g. the A_ segments, which are only one measure each, could/should use shorter files, but it was easier this way.
 
