@@ -189,7 +189,7 @@ function loadAllAudio(){
 				segments[name]=audio;
 				loadedAudioCount++;
 				progress.value = loadedAudioCount;
-				console.log("loaded %s/%s: %s", loadedAudioCount, totalAudioCount, name);
+				console.info("loaded %s/%s: %s", loadedAudioCount, totalAudioCount, name);
 				return audio;
 			}).catch(console.error)
 	});
@@ -216,13 +216,18 @@ let startindex = 0;
 function playloop(){
 	let ct = ctx.currentTime;
 	let stopindex = Math.floor((ct + plan_ahead - start_time)/measure_length);
-	console.log({ct, startindex, stopindex});
+	console.debug({ct, startindex, stopindex});
 	for(let index = startindex; index <= stopindex; index++){
 		playMeasure(index, start_time + index * measure_length);
+	}
+	let vis = document.getElementById("vis");
+	let doscroll = (vis.scrollLeftMax - vis.scrollLeft) == 0;
+	for(let index = startindex; index <= stopindex; index++){
 		displayMeasure(index, start_time + index * measure_length);
 	}
 	let marker = document.getElementById("marker");
 	marker.style.gridColumnStart = Math.floor(ct / measure_length);
+	if(doscroll) vis.scrollLeft = vis.scrollLeftMax;
 	startindex = stopindex + 1;
 	setTimeout(playloop, interval*1000);
 }
