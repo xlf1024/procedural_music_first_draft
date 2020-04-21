@@ -202,7 +202,7 @@ function playAudio(buffer, time){
 	source.start(time);
 }
 function getMeasure(index){
-	if(measures[index])	return measures[index].map(name => segments[name]);
+	if(measures[index]) return measures[index].map(name => segments[name]);
 	else return [];
 }
 let start_time = 0;
@@ -215,7 +215,7 @@ let plan_ahead = 1;
 let startindex = 0;
 function playloop(){
 	let ct = ctx.currentTime;
-	let stopindex = Math.ceil((ct + plan_ahead)/measure_length);
+	let stopindex = Math.ceil((ct + plan_ahead - start_time)/measure_length);
 	console.log({ct, startindex, stopindex});
 	for(let index = startindex; index <= stopindex; index++){
 		playMeasure(index, start_time + index * measure_length);
