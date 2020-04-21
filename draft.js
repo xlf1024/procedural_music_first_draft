@@ -239,5 +239,5 @@ document.addEventListener("DOMContentLoaded", ()=>{
 		});
 });
 
-console.log = document.writeln.bind(document);
-console.error = document.writeln.bind(document);
+console.log = document.writeln;
+console.error = document.writeln;
