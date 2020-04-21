@@ -15,3 +15,15 @@ Try it here: https://xlf1024.github.io/procedural_music_first_draft/draft.html
 
 Segments are shown when they get scheduled, also you can change how often (interval) and how far ahead (plan_ahead) audio segments are scheduled. If you want to use smaller or more precise values than the inputs allow, overwrite them in Devtools (`interval` and `plan_ahead`) For details on these options, and why scheduling is needed at all, see https://www.html5rocks.com/en/tutorials/audio/scheduling/
 If you experiment with these values, switch tabs and do other stuff in between, because javascript timeouts and intervals get stretched in invisible tabs.
+
+---
+
+TODO:
+
+- create a system to efficiently describe the logic for dynamic assembly, so that the phases of the piece can grow longer and shorter, with e.g. the transition near the end depending on an external trigger. Probably involves a domain specific language for authoring
+
+  Should I stick to the concept of measures?
+pro: probably allows for shorter syntax and simpler scheduling logic
+con: inflexible for tempo or time signature changes
+
+- find a solution for long notes with variable length like the bass note near the end
