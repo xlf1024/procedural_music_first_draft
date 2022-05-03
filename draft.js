@@ -228,7 +228,7 @@ function playloop(){
 	let marker = document.getElementById("marker");
 	marker.style.gridColumnStart = Math.floor(ct / measure_length);
 	if(doscroll) vis.scrollLeft = vis.scrollLeftMax;
-	startindex = stopindex + 1;
+	startindex = Math.max(startindex, stopindex + 1);
 	setTimeout(playloop, interval*1000);
 }
 
